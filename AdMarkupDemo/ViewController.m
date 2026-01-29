@@ -50,7 +50,29 @@ static BOOL startCalled = NO;
     b.enabled = NO;
     interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter"];
     
-    NSString* adm = adm_vungle_vast_ios;
+    NSString* adm = adm_mraid2_vungle_sample1();
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
+    
+    __weak typeof(self)weakSelf = self;
+    [interstitial loadWithBid:auctionBid
+                   completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
+        
+        b.enabled = YES;
+        if (nil == ad)
+        {
+            return;
+        }
+        
+        [weakSelf showLoadedInterstitial];
+    }];
+}
+
+-(IBAction)showVideoInterstitial:(UIButton*)b
+{
+    b.enabled = NO;
+    interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter_video"];
+    
+    NSString* adm = adm_vungle_vast_ios();
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
     
     __weak typeof(self)weakSelf = self;
@@ -77,7 +99,7 @@ static BOOL startCalled = NO;
     b.enabled = NO;
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
-    NSString* adm = adm_vungle_vast_rewarded_ios;
+    NSString* adm = adm_vungle_vast_rewarded_ios();
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
     
     __weak typeof(self)weakSelf = self;
@@ -106,7 +128,7 @@ static BOOL startCalled = NO;
     [banner removeFromSuperview];
     banner = [BDEStickyBannerView attachToView:self.view position:BIDEASEADS_BANNER_POSITION_BOTTOM edgeInsets:UIEdgeInsetsZero bannerFormat:BIDEASE_BANNER_320x50 placementId:@"Hello_banner" delegate:self];
 
-    NSString* adm = adm_bidease_320x50_banner_mraid;
+    NSString* adm = adm_bidease_320x50_banner_mraid();
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,50)]];
     
     __weak typeof(self) weakSelf = self;
