@@ -150,15 +150,15 @@ static BOOL startCalled = NO;
     [banner displayAd:ad];
 }
 
-- (void)onAdDidDisappear:(nonnull id<BideaseAd>)ad sender:(nonnull BideaseFullscreen *)sender
+- (void)onAdDidDisappear:(nonnull id<BideaseAd>)ad sender:(nonnull BideaseAdvertising *)sender
 {
 }
 
-- (void)onAdWillAppear:(nonnull id<BideaseAd>)ad sender:(nonnull BideaseFullscreen *)sender
+- (void)onAdWillAppear:(nonnull id<BideaseAd>)ad sender:(nonnull BideaseAdvertising *)sender
 {
 }
 
--(void)onAdDidReceiveReward:(id<BideaseAd>)ad sender:(BideaseFullscreen*)sender
+-(void)onAdDidReceiveReward:(id<BideaseAd>)ad sender:(BideaseAdvertising*)sender
 {
 }
 
