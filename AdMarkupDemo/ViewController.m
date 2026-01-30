@@ -10,19 +10,21 @@
 
 @interface ViewController()<BideaseShowDelegate,BideaseBannerViewDelegate,BideaseBannerDisplayDelegate,UITextFieldDelegate>
 {
-    BideaseInterstitial* interstitial;
-    BideaseRewarded* rewarded;
-    BDEStickyBannerView* banner;
-    
     IBOutlet UITextView* textView;
     IBOutlet UITextField* storeIdTextField;
 }
 
 @property(nonatomic) IBOutlet UILabel* statusLabel;
 
+@property(nonatomic) BideaseInterstitial* interstitial;
+@property(nonatomic) BideaseRewarded* rewarded;
+@property(nonatomic) BDEStickyBannerView* banner;
+
 @end
 
 @implementation ViewController
+
+@synthesize interstitial,rewarded,banner;
 
 - (BOOL)textView:(UITextView *)textView
  shouldChangeTextInRange:(NSRange)range
@@ -91,32 +93,92 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     return @(i);
 }
 
+typedef void(^get_adm_completion_t)(NSString* __nullable adm, NSNumber* __nullable storeId);
+-(void)get_ADM_format:(NSString*)format completion:(get_adm_completion_t)completion
+{
+    NSString* adm = self.adm;
+    NSNumber* storeId = self.storeId;
+    if (nil == adm)
+    {
+        if ([format containsString:@"x"])//Banner
+        {
+            adm = adm_bidease_320x50_banner_mraid();
+            storeId = nil;
+        }
+        else
+        {
+            adm = adm_mraid2_vungle_sample1();
+            storeId = storeId_mraid2_vungle_sample1();
+        }
+        
+        return completion(adm,storeId);
+    }
+    
+    if ([adm hasPrefix:@"http"])
+    {
+        return dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSURL* url = [NSURL URLWithString:adm];
+            if (nil == url)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(nil,nil);
+                });
+            }
+            
+            NSData* d = [NSData dataWithContentsOfURL:url];
+            if (nil == d)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(nil,nil);
+                });
+            }
+            
+            NSString* s = [[NSString alloc]initWithData:d encoding:NSUTF8StringEncoding];
+            if (nil == s)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(nil,nil);
+                });
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(s,storeId);
+            });
+        });
+    }
+    
+    return completion(adm,storeId);
+}
+
 -(IBAction)showInterstitial:(UIButton*)b
 {
     b.enabled = NO;
     interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter"];
     
-    NSString* adm = self.adm;
-    NSNumber* storeId = self.storeId;
-    if (nil == adm)
-    {
-        adm = adm_mraid2_vungle_sample1();
-        storeId = storeId_mraid2_vungle_sample1();
-    }
-    
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
-    
     __weak typeof(self)weakSelf = self;
-    [interstitial loadWithBid:auctionBid
-                   completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
+    [self get_ADM_format:BIDEASE_INTERSTITIAL
+              completion:^(NSString * _Nullable adm, NSNumber * _Nullable storeId) {
         
-        b.enabled = YES;
-        if (nil == ad)
+        if (nil == adm)
         {
             return;
         }
         
-        [weakSelf showLoadedInterstitial];
+        MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
+        
+        
+        [weakSelf.interstitial loadWithBid:auctionBid
+                                completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
+            
+            b.enabled = YES;
+            if (nil == ad)
+            {
+                return;
+            }
+            
+            [weakSelf showLoadedInterstitial];
+        }];
     }];
 }
 
@@ -130,27 +192,28 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     b.enabled = NO;
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
-    NSString* adm = self.adm;
-    NSNumber* storeId = self.storeId;
-    if (nil == adm)
-    {
-        adm = adm_mraid2_vungle_sample1();
-        storeId = storeId_mraid2_vungle_sample1();
-    }
-    
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
-    
     __weak typeof(self)weakSelf = self;
-    [rewarded loadWithBid:auctionBid
-               completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
+    [self get_ADM_format:BIDEASE_REWARDED_INTERSTITIAL
+              completion:^(NSString * _Nullable adm, NSNumber * _Nullable storeId) {
         
-        b.enabled = YES;
-        if (nil == ad)
+        if (nil == adm)
         {
             return;
         }
         
-        [weakSelf showLoadedRewarded];
+        MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
+        
+        [weakSelf.rewarded loadWithBid:auctionBid
+                            completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
+            
+            b.enabled = YES;
+            if (nil == ad)
+            {
+                return;
+            }
+            
+            [weakSelf showLoadedRewarded];
+        }];
     }];
 }
 
@@ -165,21 +228,23 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     
     [banner removeFromSuperview];
     banner = [BDEStickyBannerView attachToView:self.view position:BIDEASEADS_BANNER_POSITION_BOTTOM edgeInsets:UIEdgeInsetsZero bannerFormat:BIDEASE_BANNER_320x50 placementId:@"Hello_banner" delegate:self];
-
-    NSString* adm = adm_bidease_320x50_banner_mraid();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,50) storeId:nil]];
     
-    __weak typeof(self) weakSelf = self;
-    [banner loadAd:auctionBid
-        completion:^(UIView<BideaseAd> * _Nullable ad, NSError * _Nullable error) {
+    __weak typeof(self)weakSelf = self;
+    [self get_ADM_format:BIDEASE_BANNER_320x50
+              completion:^(NSString * _Nullable adm, NSNumber * _Nullable storeId) {
         
-        b.enabled = YES;
-        if (nil != error)
-        {
-            return;
-        }
-        
-        [weakSelf showLoadedBanner:ad];
+        MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,50) storeId:nil]];
+        [weakSelf.banner loadAd:auctionBid
+                     completion:^(UIView<BideaseAd> * _Nullable ad, NSError * _Nullable error) {
+            
+            b.enabled = YES;
+            if (nil != error)
+            {
+                return;
+            }
+            
+            [weakSelf showLoadedBanner:ad];
+        }];
     }];
 }
 
