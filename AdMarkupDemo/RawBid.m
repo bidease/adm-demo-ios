@@ -3,21 +3,26 @@
 //
 
 #import "RawBid.h"
+#import <StoreKit/StoreKit.h>
 
 @implementation RawBid
+{
+    NSNumber* _storeId;
+}
 
--(instancetype)initWithADM:(NSString*)adm_ size:(CGSize)size
+-(instancetype)initWithADM:(NSString*)adm_ size:(CGSize)size storeId:(NSNumber*)storeId
 {
     if (self = [super init])
     {
         _adm = adm_;
         _size = size;
+        _storeId = storeId;
     }
     
     return self;
 }
 
-#pragma mark - Stubs for BideaseRawBid informal protocol
+#pragma mark - BideaseRawBid informal protocol
 
 -(NSString*)requestId
 {
@@ -61,7 +66,7 @@
 
 -(BOOL)supports_bideaseclick_scheme
 {
-    return NO;
+    return nil != self.skadnProductParameters && nil != self.click_target && nil != self.click_tracking;
 }
 
 -(NSString*)crid
@@ -71,7 +76,12 @@
 
 -(id)skadnProductParameters
 {
-    return nil;
+    if (nil == _storeId)
+    {
+        return nil;
+    }
+    
+    return @{SKStoreProductParameterITunesItemIdentifier : _storeId};
 }
 
 typedef NSString* __nullable (^external_impression_id_source_t)(void);
@@ -82,12 +92,17 @@ typedef NSString* __nullable (^external_impression_id_source_t)(void);
 
 -(id)click_target
 {
-    return nil;
+    if (nil == _storeId)
+    {
+        return nil;
+    }
+    
+    return [@"https://apps.apple.com/app/id" stringByAppendingString:_storeId.stringValue];
 }
 
 -(id)click_tracking
 {
-    return nil;
+    return @"about:blank";
 }
 
 @end

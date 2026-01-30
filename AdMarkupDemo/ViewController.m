@@ -51,7 +51,7 @@ static BOOL startCalled = NO;
     interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter"];
     
     NSString* adm = adm_mraid2_vungle_sample1();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:@1078986931]];
     
     __weak typeof(self)weakSelf = self;
     [interstitial loadWithBid:auctionBid
@@ -78,7 +78,7 @@ static BOOL startCalled = NO;
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
     NSString* adm = adm_mraid2_vungle_sample1();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:@1078986931]];
     
     __weak typeof(self)weakSelf = self;
     [rewarded loadWithBid:auctionBid
@@ -107,7 +107,7 @@ static BOOL startCalled = NO;
     banner = [BDEStickyBannerView attachToView:self.view position:BIDEASEADS_BANNER_POSITION_BOTTOM edgeInsets:UIEdgeInsetsZero bannerFormat:BIDEASE_BANNER_320x50 placementId:@"Hello_banner" delegate:self];
 
     NSString* adm = adm_bidease_320x50_banner_mraid();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,50)]];
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,50) storeId:nil]];
     
     __weak typeof(self) weakSelf = self;
     [banner loadAd:auctionBid

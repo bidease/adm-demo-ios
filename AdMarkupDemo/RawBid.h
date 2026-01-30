@@ -14,7 +14,7 @@ typedef NSString* __nullable (^external_impression_id_source_t)(void);
 @property(nonatomic,readonly) CGSize size;
 @property(nonatomic,nullable) external_impression_id_source_t getExternalImpressionId;
 
--(instancetype)initWithADM:(NSString*)adm size:(CGSize)size;
+-(instancetype)initWithADM:(NSString*)adm size:(CGSize)size storeId:(NSNumber* __nullable)storeId;
 
 @end
 
