@@ -46,7 +46,7 @@
 
 -(NSString*)bid_bundle
 {
-    return nil;
+    return _storeId.stringValue;
 }
 
 -(NSNumber*)maxVideoDurationFromConfig

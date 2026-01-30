@@ -23,6 +23,8 @@
 
 static BOOL startCalled = NO;
 
+extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -30,6 +32,8 @@ static BOOL startCalled = NO;
     if (!startCalled)
     {
         startCalled = YES;
+        
+        BideaseSDK_ignoreTmax = YES;
         
         __weak typeof(self) weakSelf = self;
         [BideaseSDK startWithCompletion:^(BOOL success, NSError * _Nullable error, BOOL isConnectionError) {
