@@ -55,7 +55,9 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter"];
     
     NSString* adm = adm_mraid2_vungle_sample1();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:@1078986931]];
+    NSNumber* storeId = storeId_mraid2_vungle_sample1();
+    
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
     
     __weak typeof(self)weakSelf = self;
     [interstitial loadWithBid:auctionBid
@@ -82,7 +84,9 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
     NSString* adm = adm_mraid2_vungle_sample1();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:@1078986931]];
+    NSNumber* storeId = storeId_mraid2_vungle_sample1();
+    
+    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
     
     __weak typeof(self)weakSelf = self;
     [rewarded loadWithBid:auctionBid

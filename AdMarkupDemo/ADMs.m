@@ -22,6 +22,32 @@ static NSString* get_adm_from_OpenRTB_response(NSString* __nonnull openRTB_respo
     return adm_;
 }
 
+static NSNumber* get_storeId_from_OpenRTB_response(NSString* __nonnull openRTB_response)
+{
+    if (0 == openRTB_response.length)
+    {
+        return nil;
+    }
+    
+    NSDictionary* response = [NSJSONSerialization JSONObjectWithData:[openRTB_response dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    if (nil == response)
+    {
+        return nil;
+    }
+    
+    NSDictionary *bid =
+        [[response[@"seatbid"] firstObject][@"bid"] firstObject];
+    
+    NSString* b = bid[@"bundle"];
+    if (nil == b ||
+        0 == b.integerValue)
+    {
+        return nil;
+    }
+    
+    return @(b.integerValue);
+}
+
 static NSString* response_mraid2_vungle_sample1 = @"{\
     \"id\": \"6570e22fe062274548a5339e\",\
     \"cur\": \"USD\",\
@@ -134,6 +160,11 @@ static NSString* response_bidease_320x50_banner_mraid = @"{\
 NSString* __nonnull adm_mraid2_vungle_sample1(void)
 {
     return get_adm_from_OpenRTB_response(response_mraid2_vungle_sample1);
+}
+
+NSNumber* storeId_mraid2_vungle_sample1(void)
+{
+    return get_storeId_from_OpenRTB_response(response_mraid2_vungle_sample1);
 }
 
 NSString* __nonnull adm_bidease_320x50_banner_mraid(void)
