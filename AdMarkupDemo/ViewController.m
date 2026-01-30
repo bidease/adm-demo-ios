@@ -8,11 +8,14 @@
 #import "RawBid.h"
 #import "MyAuctionBid.h"
 
-@interface ViewController()<BideaseShowDelegate,BideaseBannerViewDelegate,BideaseBannerDisplayDelegate>
+@interface ViewController()<BideaseShowDelegate,BideaseBannerViewDelegate,BideaseBannerDisplayDelegate,UITextFieldDelegate>
 {
     BideaseInterstitial* interstitial;
     BideaseRewarded* rewarded;
     BDEStickyBannerView* banner;
+    
+    IBOutlet UITextView* textView;
+    IBOutlet UITextField* storeIdTextField;
 }
 
 @property(nonatomic) IBOutlet UILabel* statusLabel;
@@ -20,6 +23,23 @@
 @end
 
 @implementation ViewController
+
+- (BOOL)textView:(UITextView *)textView
+ shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text {
+
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 static BOOL startCalled = NO;
 
@@ -49,13 +69,40 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     }
 }
 
+-(NSString*)adm
+{
+    NSString* txt = [textView.text stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+    if (txt.length == 0)
+    {
+        return nil;
+    }
+    
+    return txt;
+}
+
+-(NSNumber*)storeId
+{
+    NSInteger i = storeIdTextField.text.integerValue;
+    if (i == 0)
+    {
+        return nil;
+    }
+    
+    return @(i);
+}
+
 -(IBAction)showInterstitial:(UIButton*)b
 {
     b.enabled = NO;
     interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter"];
     
-    NSString* adm = adm_mraid2_vungle_sample1();
-    NSNumber* storeId = storeId_mraid2_vungle_sample1();
+    NSString* adm = self.adm;
+    NSNumber* storeId = self.storeId;
+    if (nil == adm)
+    {
+        adm = adm_mraid2_vungle_sample1();
+        storeId = storeId_mraid2_vungle_sample1();
+    }
     
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
     
@@ -83,8 +130,13 @@ extern BOOL BideaseSDK_ignoreTmax;//Ignore timeouts
     b.enabled = NO;
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
-    NSString* adm = adm_mraid2_vungle_sample1();
-    NSNumber* storeId = storeId_mraid2_vungle_sample1();
+    NSString* adm = self.adm;
+    NSNumber* storeId = self.storeId;
+    if (nil == adm)
+    {
+        adm = adm_mraid2_vungle_sample1();
+        storeId = storeId_mraid2_vungle_sample1();
+    }
     
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480) storeId:storeId]];
     
