@@ -162,6 +162,7 @@ typedef void(^get_adm_completion_t)(NSString* __nullable adm, NSNumber* __nullab
         
         if (nil == adm)
         {
+            b.enabled = YES;
             return;
         }
         
@@ -198,6 +199,7 @@ typedef void(^get_adm_completion_t)(NSString* __nullable adm, NSNumber* __nullab
         
         if (nil == adm)
         {
+            b.enabled = YES;
             return;
         }
         
