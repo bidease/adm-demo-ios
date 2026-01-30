@@ -67,28 +67,6 @@ static BOOL startCalled = NO;
     }];
 }
 
--(IBAction)showVideoInterstitial:(UIButton*)b
-{
-    b.enabled = NO;
-    interstitial = [[BideaseInterstitial alloc]initWithPlacementId:@"Hello_inter_video"];
-    
-    NSString* adm = adm_vungle_vast_ios();
-    MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
-    
-    __weak typeof(self)weakSelf = self;
-    [interstitial loadWithBid:auctionBid
-                   completion:^(id<BideaseAd> _Nullable ad, NSError * _Nullable error) {
-        
-        b.enabled = YES;
-        if (nil == ad)
-        {
-            return;
-        }
-        
-        [weakSelf showLoadedInterstitial];
-    }];
-}
-
 -(void)showLoadedInterstitial
 {
     [interstitial showWithDelegate:self];

@@ -18,22 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIr-B6-xg0">
-                                <rect key="frame" x="16" y="105" width="145" height="41"/>
+                                <rect key="frame" x="16" y="146" width="145" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Show Interstitial"/>
                                 <connections>
                                     <action selector="showInterstitial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="puV-Pv-v4c"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ib-EM-pvU">
-                                <rect key="frame" x="16" y="146" width="206" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Show Interstitial (Video)"/>
-                                <connections>
-                                    <action selector="showInterstitial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="On5-rJ-eZZ"/>
-                                    <action selector="showVideoInterstitial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kwr-ye-YUP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSS-V1-uu8">

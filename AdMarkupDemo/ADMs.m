@@ -22,46 +22,6 @@ static NSString* get_adm_from_OpenRTB_response(NSString* __nonnull openRTB_respo
     return adm_;
 }
 
-static NSString* response_skoverlay_vungle_vast_ios = @"\
-{\
-\"id\": \"650ab1418cab2d3cac5dceb8\",\
-\"cur\": \"USD\",\
-\"seatbid\": [\
-  {\
-    \"bid\": [\
-      {\
-        \"id\": \"vpYyzwEvglRRGtfv\",\
-        \"adid\": \"322514\",\
-        \"cid\": \"1445659646_ios\",\
-        \"crid\": \"393fb47e9d\",\
-        \"impid\": \"1\",\
-        \"price\": 3.9667557961731434,\
-        \"adomain\": [\
-          \"belbet.by\"\
-        ],\
-        \"bundle\": \"1445659646\",\
-        \"cat\": [\
-          \"IAB9-30\"\
-        ],\
-        \"nurl\": \"https://track-win-us.bidease.com/win?x=vpYyzwEvglRRGtfv&win_price=${AUCTION_PRICE}&min_to_win=${AUCTION_MIN_TO_WIN}&min_bid_to_win=${AUCTION_MINIMUM_BID_TO_WIN}\",\
-        \"lurl\": \"https://track-loss-us.bidease.com/loss?x=vpYyzwEvglRRGtfv&loss_reason=${AUCTION_LOSS}&win_price=${AUCTION_PRICE}&min_to_win=${AUCTION_MIN_TO_WIN}&min_bid_to_win=${AUCTION_MINIMUM_BID_TO_WIN}&mbr=${AUCTION_MBR}\",\
-        \"burl\": \"https://track-us.bidease.com/imp?x=vpYyzwEvglRRGtfv&win_price=${AUCTION_PRICE}\",\
-        \"adm\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<VAST version=\\\"2.0\\\">\\n    <Ad id=\\\"322514\\\">\\n        <InLine>\\n            <AdSystem>Bidease Inc.</AdSystem>\\n            <AdTitle>Bidease Ad</AdTitle>\\n            <Description>Bidease Ad</Description>\\n            <Survey/>\\n\\n            <Error><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=error]]></Error>\\n            <Impression><![CDATA[https://track-us.bidease.com/impcr?x=vpYyzwEvglRRGtfv]]></Impression>\\n            \\n            \\n            \\n            <Creatives>\\n                <Creative AdID=\\\"322514\\\">\\n                    <Linear>\\n                        <Duration>00:00:40</Duration>\\n                        <MediaFiles>\\n                          <MediaFile delivery=\\\"progressive\\\" type=\\\"video/mp4\\\" width=\\\"720\\\" height=\\\"1280\\\" scalable=\\\"true\\\" maintainAspectRatio=\\\"true\\\"><![CDATA[https://creative.bidease.com/media/res/2023/04/a715c24c-6d4c-720x1280.mp4]]></MediaFile>\\n                          \\n                          \\n                        </MediaFiles>\\n                        <TrackingEvents>\\n                            <Tracking event=\\\"creativeView\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=creativeView]]></Tracking>\\n                            <Tracking event=\\\"start\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=start]]></Tracking>\\n                            <Tracking event=\\\"firstQuartile\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=firstQuartile]]></Tracking>\\n                            <Tracking event=\\\"midpoint\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=midpoint]]></Tracking>\\n                            <Tracking event=\\\"thirdQuartile\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=thirdQuartile]]></Tracking>\\n                            <Tracking event=\\\"complete\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=complete]]></Tracking>\\n                            <Tracking event=\\\"mute\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=mute]]></Tracking>\\n                            <Tracking event=\\\"unmute\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=unmute]]></Tracking>\\n                            <Tracking event=\\\"pause\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=pause]]></Tracking>\\n                            <Tracking event=\\\"resume\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=resume]]></Tracking>\\n                            <Tracking event=\\\"fullscreen\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=fullscreen]]></Tracking>\\n                            <Tracking event=\\\"exitFullscreen\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=exitFullscreen]]></Tracking>\\n                            <Tracking event=\\\"close\\\"><![CDATA[https://track-us.bidease.com/event?x=vpYyzwEvglRRGtfv&t=close]]></Tracking>\\n                            \\n                        </TrackingEvents>\\n\\n                        <VideoClicks>\\n                            \\n                            <ClickThrough><![CDATA[https://apps.apple.com/by/app/id1445659646]]></ClickThrough>\\n                            \\n                        </VideoClicks>\\n                    </Linear>\\n                </Creative>\\n                <Creative AdID=\\\"322514-Companion\\\">\\n                    <CompanionAds>\\n                        <Companion width=\\\"720\\\" height=\\\"1280\\\">\\n                            <StaticResource creativeType=\\\"image/jpeg\\\"><![CDATA[https://creative.bidease.com/media/res/2023/04/fd6f9105-a8cc.jpeg]]></StaticResource>\\n                            \\n                            <CompanionClickThrough><![CDATA[https://apps.apple.com/by/app/id1445659646]]></CompanionClickThrough>\\n                            \\n                        </Companion>\\n                        \\n                    </CompanionAds>\\n                </Creative>\\n            </Creatives>\\n        </InLine>\\n    </Ad>\\n</VAST>\",\
-        \"w\": 320,\
-        \"h\": 480,\
-        \"ext\": {\
-          \"bidease\": {\
-            \"click_target\" : \"https://belbet.by\"\
-          }\
-        }\
-      }\
-    ]\
-  }\
-],\
-\"ext\": {}\
-}\
-";
-
 static NSString* response_storekit_vungle_vast_rewarded_ios = @"{\
 \"id\": \"650ab136b6f0ffbe05290dd7\",\
 \"cur\": \"USD\",\
@@ -209,11 +169,6 @@ static NSString* response_bidease_320x50_banner_mraid = @"{\
   \"ext\": {}\
 }\
 ";
-
-NSString* __nonnull adm_vungle_vast_ios(void)
-{
-    return get_adm_from_OpenRTB_response(response_skoverlay_vungle_vast_ios);
-}
 
 NSString* __nonnull adm_vungle_vast_rewarded_ios(void)
 {
