@@ -77,7 +77,7 @@ static BOOL startCalled = NO;
     b.enabled = NO;
     rewarded = [[BideaseRewarded alloc]initWithPlacementId:@"Hello_rewarded"];
     
-    NSString* adm = adm_vungle_vast_rewarded_ios();
+    NSString* adm = adm_mraid2_vungle_sample1();
     MyAuctionBid* auctionBid = [[MyAuctionBid alloc]initWithRawBid:[[RawBid alloc]initWithADM:adm size:CGSizeMake(320,480)]];
     
     __weak typeof(self)weakSelf = self;

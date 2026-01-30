@@ -22,45 +22,6 @@ static NSString* get_adm_from_OpenRTB_response(NSString* __nonnull openRTB_respo
     return adm_;
 }
 
-static NSString* response_storekit_vungle_vast_rewarded_ios = @"{\
-\"id\": \"650ab136b6f0ffbe05290dd7\",\
-\"cur\": \"USD\",\
-\"seatbid\": [\
-  {\
-    \"bid\": [\
-      {\
-        \"id\": \"kEZxprISjrwPRSQv\",\
-        \"adid\": \"345279\",\
-        \"cid\": \"916258897_ios\",\
-        \"crid\": \"b8a31fa3bc\",\
-        \"impid\": \"1\",\
-        \"price\": 1.868590809968784,\
-        \"adomain\": [\
-          \"apteka.ru\"\
-        ],\
-        \"bundle\": \"916258897\",\
-        \"cat\": [\
-          \"IAB22\"\
-        ],\
-        \"nurl\": \"https://track-win-us.bidease.com/win?x=kEZxprISjrwPRSQv&win_price=${AUCTION_PRICE}&min_to_win=${AUCTION_MIN_TO_WIN}&min_bid_to_win=${AUCTION_MINIMUM_BID_TO_WIN}\",\
-        \"lurl\": \"https://track-loss-us.bidease.com/loss?x=kEZxprISjrwPRSQv&loss_reason=${AUCTION_LOSS}&win_price=${AUCTION_PRICE}&min_to_win=${AUCTION_MIN_TO_WIN}&min_bid_to_win=${AUCTION_MINIMUM_BID_TO_WIN}&mbr=${AUCTION_MBR}\",\
-        \"burl\": \"https://track-us.bidease.com/imp?x=kEZxprISjrwPRSQv&win_price=${AUCTION_PRICE}\",\
-        \"adm\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<VAST version=\\\"2.0\\\">\\n    <Ad id=\\\"345279\\\">\\n        <InLine>\\n            <AdSystem>Bidease Inc.</AdSystem>\\n            <AdTitle>Bidease Ad</AdTitle>\\n            <Description>Bidease Ad</Description>\\n            <Survey/>\\n\\n            <Error><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=error]]></Error>\\n            <Impression><![CDATA[https://track-us.bidease.com/impcr?x=kEZxprISjrwPRSQv]]></Impression>\\n            \\n            \\n            \\n            <Creatives>\\n                <Creative AdID=\\\"345279\\\">\\n                    <Linear>\\n                        <Duration>00:00:35</Duration>\\n                        <MediaFiles>\\n                          <MediaFile delivery=\\\"progressive\\\" type=\\\"video/mp4\\\" width=\\\"720\\\" height=\\\"1280\\\" scalable=\\\"true\\\" maintainAspectRatio=\\\"true\\\"><![CDATA[https://creative.bidease.com/media/res/2023/08/96e543ed-80ac-720x1280.mp4]]></MediaFile>\\n                          \\n                          \\n                        </MediaFiles>\\n                        <TrackingEvents>\\n                            <Tracking event=\\\"creativeView\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=creativeView]]></Tracking>\\n                            <Tracking event=\\\"start\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=start]]></Tracking>\\n                            <Tracking event=\\\"firstQuartile\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=firstQuartile]]></Tracking>\\n                            <Tracking event=\\\"midpoint\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=midpoint]]></Tracking>\\n                            <Tracking event=\\\"thirdQuartile\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=thirdQuartile]]></Tracking>\\n                            <Tracking event=\\\"complete\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=complete]]></Tracking>\\n                            <Tracking event=\\\"mute\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=mute]]></Tracking>\\n                            <Tracking event=\\\"unmute\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=unmute]]></Tracking>\\n                            <Tracking event=\\\"pause\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=pause]]></Tracking>\\n                            <Tracking event=\\\"resume\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=resume]]></Tracking>\\n                            <Tracking event=\\\"fullscreen\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=fullscreen]]></Tracking>\\n                            <Tracking event=\\\"exitFullscreen\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=exitFullscreen]]></Tracking>\\n                            <Tracking event=\\\"close\\\"><![CDATA[https://track-us.bidease.com/event?x=kEZxprISjrwPRSQv&t=close]]></Tracking>\\n                            \\n                        </TrackingEvents>\\n\\n                        <VideoClicks>\\n                            \\n                            <ClickThrough><![CDATA[https://apps.apple.com/app/id916258897]]></ClickThrough>\\n                            \\n                        </VideoClicks>\\n                    </Linear>\\n                </Creative>\\n                <Creative AdID=\\\"345279-Companion\\\">\\n                    <CompanionAds>\\n                        <Companion width=\\\"717\\\" height=\\\"1280\\\">\\n                            <StaticResource creativeType=\\\"image/jpeg\\\"><![CDATA[https://creative.bidease.com/media/res/2023/08/27887316-ddd5.jpeg]]></StaticResource>\\n                            \\n                            <CompanionClickThrough><![CDATA[https://apps.apple.com/app/id916258897]]></CompanionClickThrough>\\n                            \\n                        </Companion>\\n                        \\n                    </CompanionAds>\\n                </Creative>\\n            </Creatives>\\n        </InLine>\\n    </Ad>\\n</VAST>\",\
-        \"w\": 320,\
-        \"h\": 480,\
-        \"ext\": {\
-          \"skpv\": {\
-            \"page1onclose\": 1,\
-            \"page2onclose\": 1\
-          }\
-        }\
-      }\
-    ]\
-  }\
-],\
-\"ext\": {}\
-}";
-
 static NSString* response_mraid2_vungle_sample1 = @"{\
     \"id\": \"6570e22fe062274548a5339e\",\
     \"cur\": \"USD\",\
@@ -169,11 +130,6 @@ static NSString* response_bidease_320x50_banner_mraid = @"{\
   \"ext\": {}\
 }\
 ";
-
-NSString* __nonnull adm_vungle_vast_rewarded_ios(void)
-{
-    return get_adm_from_OpenRTB_response(response_storekit_vungle_vast_rewarded_ios);
-}
 
 NSString* __nonnull adm_mraid2_vungle_sample1(void)
 {

@@ -4,7 +4,5 @@
 
 #import <Foundation/Foundation.h>
 
-NSString* __nonnull adm_vungle_vast_ios(void);
-NSString* __nonnull adm_vungle_vast_rewarded_ios(void);
 NSString* __nonnull adm_mraid2_vungle_sample1(void);
 NSString* __nonnull adm_bidease_320x50_banner_mraid(void);
